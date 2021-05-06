@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ProductTile } from "../interfaces/product-tile";
 
 @Component({
@@ -6,12 +6,33 @@ import { ProductTile } from "../interfaces/product-tile";
     templateUrl:'./product-list.component.html',
     styleUrls:['./product-list.component.css']
 })
-export class ProductListComponent{
+export class ProductListComponent implements OnInit{
+
+    ngOnInit(){
+      console.log('Product List Component Initialized');
+      this.filterType = '';
+    }
+
     pageTitle: string = 'Product List';
     imageHeight = 50;
     imageMargin = 2;
     showImage: boolean = false;
-    filterType: string = '';
+
+    private _listFilter: string = '';
+
+    get filterType(): string {
+      return this._listFilter;
+    }
+
+    set filterType(val:string) {
+      this._listFilter = val;
+      console.log('From Set Filter Setter',this._listFilter);
+
+      this.filteredProducts = this.performFilter(this.filterType);
+    }
+
+    filteredProducts: ProductTile[] = [];
+
     products: ProductTile[] = [
         {
             "productId": 1,
@@ -45,6 +66,10 @@ export class ProductListComponent{
           },
     ];
 
+    performFilter(filterVal:string): ProductTile[] {
+      filterVal = filterVal.toLocaleLowerCase();
+      return this.products.filter((product:ProductTile)=> product.productName.toLocaleLowerCase().includes(filterVal));
+    }
 
     toggleImage(): void {
         this.showImage = !this.showImage;
