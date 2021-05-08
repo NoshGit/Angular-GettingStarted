@@ -10,15 +10,16 @@ export class ProductListComponent implements OnInit{
 
     ngOnInit(){
       console.log('Product List Component Initialized');
-      this.filterType = '';
+      //this.filterType = '';
     }
 
     pageTitle: string = 'Product List';
     imageHeight = 50;
     imageMargin = 2;
     showImage: boolean = false;
+    filterType:string=''
 
-    private _listFilter: string = '';
+   /* private _listFilter: string = '';
 
     get filterType(): string {
       return this._listFilter;
@@ -31,7 +32,7 @@ export class ProductListComponent implements OnInit{
       this.filteredProducts = this.performFilter(this.filterType);
     }
 
-    filteredProducts: ProductTile[] = [];
+    filteredProducts: ProductTile[] = [];*/
 
     products: ProductTile[] = [
         {
@@ -66,10 +67,10 @@ export class ProductListComponent implements OnInit{
           },
     ];
 
-    performFilter(filterVal:string): ProductTile[] {
+    /*performFilter(filterVal:string): ProductTile[] {
       filterVal = filterVal.toLocaleLowerCase();
       return this.products.filter((product:ProductTile)=> product.productName.toLocaleLowerCase().includes(filterVal));
-    }
+    }*/
 
     toggleImage(): void {
         this.showImage = !this.showImage;

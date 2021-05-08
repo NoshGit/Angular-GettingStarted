@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of filteredProducts">
+                <tr *ngFor="let product of products | filterArray:filterType">
                     <td>
                         <img *ngIf="showImage" [src]="product.imageUrl" 
                         [alt]="product.productName"
