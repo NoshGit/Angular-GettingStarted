@@ -35,7 +35,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
     }
 
     displayStars(message:string):void {
-      this.pageTitle = 'Product List ' + message;
+      this.pageTitle = `Product List <span class="titleMsg">${message}</span>`;
     }
 
     ngOnDestroy(): void {

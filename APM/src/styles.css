@@ -7,3 +7,12 @@
     margin-left:0;
     margin-right:0;
 }
+.titleMsg{
+    color: coral;
+}
+.nav-link{
+    cursor: pointer;
+}
+.align-center{
+    text-align: center;
+}

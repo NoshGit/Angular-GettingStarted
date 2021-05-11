@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { tap, catchError } from "rxjs/operators"
+import { tap, catchError, map } from "rxjs/operators"
 import { ProductTile } from "src/app/interfaces/product-tile";
 
 @Injectable({
@@ -18,7 +18,14 @@ export class ProductService {
             tap(data => console.log(data)),
             catchError(this.handleError)
         );
-    }    
+    }
+    
+    getProduct(id:number): Observable<ProductTile> {
+        return this.getProducts()
+        .pipe(
+            map((products: ProductTile[]) => products.find(p => p.productId === id))
+        );
+    }
 
     private handleError(err: HttpErrorResponse){
         let errorMsg = '';

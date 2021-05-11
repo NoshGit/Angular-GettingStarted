@@ -7,7 +7,7 @@ import { ProductTile } from "../interfaces/product-tile";
 
 export class FilterArray implements PipeTransform {
 
-    transform(val:any, filter:string): ProductTile{
+    transform(val:any, filter:string): ProductTile[]{
         filter = filter.toLocaleLowerCase();
         return val.filter((product:ProductTile)=> product.productName.toLocaleLowerCase().includes(filter)); 
     }
